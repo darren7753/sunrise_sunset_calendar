@@ -28,7 +28,7 @@ def get_moon_phase(group):
         group["Moon Phases"] = 0
     return group
 
-for url in modified_urls[20:40]:
+for url in modified_urls[:50_000]:
     params = parse_qs(urlparse(url).query)
 
     city_state_data = unquote(params["comb_city_info"][0]).split(",")[:2]
