@@ -30,7 +30,9 @@ def get_moon_phase(group):
         group["Moon Phases"] = 0
     return group
 
-for url in modified_urls[:20]:
+errors2 = []
+
+for url in modified_urls[:50_000]:
     params = parse_qs(urlparse(url).query)
 
     city_state_data = unquote(params["comb_city_info"][0]).split(",")[:2]
@@ -128,6 +130,17 @@ for url in modified_urls[:20]:
             for index, row in df_melted.iterrows():
                 ws.append(row.values.tolist())
 
-    wb.save(f"{data_folder}/{state}_{year}.xlsx")
+            wb.save(f"{data_folder}/{state}_{year}.xlsx")
 
-    print(f"{city}, {state} has been stored in the {month_name} sheet of {data_folder}/{state}_{year}.xlsx\n")
+            print(f"{city}, {state} has been stored in the {month_name} sheet of {data_folder}/{state}_{year}.xlsx\n")
+
+            success = True
+
+        except requests.exceptions.RequestException as e:
+            print(f"Error with URL {url}: {e}")
+            errors2.append(url)
+            attempts += 1
+
+with open("errors2.txt", "w") as file:
+    for error in errors2:
+        file.write("%s\n" % error)
