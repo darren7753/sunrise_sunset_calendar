@@ -42,7 +42,7 @@ jobs:
         git config --global user.name "${{ secrets.USERNAME_GITHUB }}"
         git config --global user.email "${{ secrets.EMAIL_GITHUB }}"
         git pull
-        git add Data_V2/* errors2_V2.txt
+        git add Data_V2/* Error_V2/*
         git commit -m "Commit from GitHub Actions" || echo "No changes to commit"
         git push
 
