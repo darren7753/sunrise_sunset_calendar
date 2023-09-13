@@ -31,7 +31,11 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run script
+      env:
+        START_IDX: ${{ github.event.inputs.startIdx }}
+        END_IDX: ${{ github.event.inputs.endIdx }}
       run: python scraping_data.py
+    
 
     - name: Commit and push changes
       run: |

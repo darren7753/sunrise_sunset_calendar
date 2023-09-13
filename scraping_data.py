@@ -32,8 +32,8 @@ def get_moon_phase(group):
 
 errors2 = []
 
-start_idx = int(os.getenv("START_IDX", 0))
-end_idx = int(os.getenv("END_IDX", 10))
+start_idx = int(os.getenv("START_IDX"))
+end_idx = int(os.getenv("END_IDX"))
 
 end_idx = min(end_idx, len(modified_urls))
 
