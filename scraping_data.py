@@ -32,7 +32,10 @@ def get_moon_phase(group):
 
 errors2 = []
 
-for url in modified_urls[:50_000]:
+start_idx = int(os.getenv("START_IDX", 0))
+end_idx = int(os.getenv("END_IDX", 10))
+
+for url in modified_urls[start_idx:end_idx]:
     params = parse_qs(urlparse(url).query)
 
     city_state_data = unquote(params["comb_city_info"][0]).split(",")[:2]
@@ -141,6 +144,6 @@ for url in modified_urls[:50_000]:
             errors2.append(url)
             attempts += 1
 
-with open("errors2.txt", "w") as file:
+with open("errors2.txt", "a") as file:
     for error in errors2:
         file.write("%s\n" % error)
