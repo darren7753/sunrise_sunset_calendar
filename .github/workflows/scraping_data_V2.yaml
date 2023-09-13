@@ -56,6 +56,6 @@ jobs:
       if: ${{ github.event.inputs.endIdx < 203905 }} # or whatever your max value is
       uses: benc-uk/workflow-dispatch@v1
       with:
-        workflow: Process URLs
+        workflow: Process URLs_V2
         token: ${{ secrets.YOUR_PERSONAL_ACCESS_TOKEN }}
         inputs: '{"startIdx": "${{ steps.calculate-indices.outputs.newStartIdx }}", "endIdx": "${{ steps.calculate-indices.outputs.newEndIdx }}"}'
