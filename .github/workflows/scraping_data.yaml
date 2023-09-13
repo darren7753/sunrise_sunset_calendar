@@ -10,7 +10,7 @@ on:
       endIdx:
         description: 'End index'
         required: true
-        default: '10'
+        default: '800'
 
 jobs:
   process_urls:
@@ -50,7 +50,7 @@ jobs:
       id: calculate-indices
       run: |
         echo "::set-output name=newStartIdx::${{ github.event.inputs.endIdx }}"
-        echo "::set-output name=newEndIdx::$((${{ github.event.inputs.endIdx }} + 10))"
+        echo "::set-output name=newEndIdx::$((${{ github.event.inputs.endIdx }} + 800))"
 
     - name: Dispatch next workflow
       if: ${{ github.event.inputs.endIdx < 203904 }} # or whatever your max value is
