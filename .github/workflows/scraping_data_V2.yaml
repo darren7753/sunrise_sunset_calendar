@@ -1,0 +1,61 @@
+name: Process URLs_V2
+
+on:
+  workflow_dispatch:
+    inputs:
+      startIdx:
+        description: 'Start index'
+        required: true
+        default: '0'
+      endIdx:
+        description: 'End index'
+        required: true
+        default: '10000'
+
+jobs:
+  process_urls:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run script
+      env:
+        START_IDX_V2: ${{ github.event.inputs.startIdx }}
+        END_IDX_V2: ${{ github.event.inputs.endIdx }}
+      run: python scraping_data_V2.py
+    
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name "${{ secrets.USERNAME_GITHUB }}"
+        git config --global user.email "${{ secrets.EMAIL_GITHUB }}"
+        git pull
+        git add Data_V2/* errors2_V2.txt
+        git commit -m "Commit from GitHub Actions" || echo "No changes to commit"
+        git push
+
+    - name: Calculate new indices
+      id: calculate-indices
+      run: |
+        echo "::set-output name=newStartIdx::${{ github.event.inputs.endIdx }}"
+        echo "::set-output name=newEndIdx::$((${{ github.event.inputs.endIdx }} + 10000))"
+
+    - name: Dispatch next workflow
+      if: ${{ github.event.inputs.endIdx < 203905 }} # or whatever your max value is
+      uses: benc-uk/workflow-dispatch@v1
+      with:
+        workflow: Process URLs
+        token: ${{ secrets.YOUR_PERSONAL_ACCESS_TOKEN }}
+        inputs: '{"startIdx": "${{ steps.calculate-indices.outputs.newStartIdx }}", "endIdx": "${{ steps.calculate-indices.outputs.newEndIdx }}"}'
