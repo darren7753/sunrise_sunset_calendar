@@ -13,9 +13,13 @@ from concurrent.futures import ThreadPoolExecutor
 with open("modified_urls.txt", "r") as file:
     modified_urls = [line.strip() for line in file]
 
-data_folder = "Data_V2"
+data_folder = "Data"
 if not os.path.exists(data_folder):
     os.makedirs(data_folder)
+
+error_folder = "Error"
+if not os.path.exists(error_folder):
+    os.makedirs(error_folder)
 
 sheet_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
@@ -30,14 +34,13 @@ def get_moon_phase(group):
         group["Moon Phases"] = 0
     return group
 
-errors2 = []
-
 start_idx = int(os.getenv("START_IDX_V2"))
 end_idx = int(os.getenv("END_IDX_V2"))
 
 end_idx = min(end_idx, len(modified_urls))
 
 def scrape_url(url):
+    errors2 = []
     params = parse_qs(urlparse(url).query)
 
     city_state_data = unquote(params["comb_city_info"][0]).split(",")[:2]
@@ -142,16 +145,17 @@ def scrape_url(url):
 
             success = True
 
-            print(f"{city}, {state} has been stored in the {month_name} sheet of {filename}")
+            # print(f"{city}, {state} has been stored in the {month_name} sheet of {filename}")
 
         except requests.exceptions.RequestException as e:
             errors2.append(url)
             attempts += 1
             print(f"Error with URL {url}: {e}")
 
-with open("errors2_V2.txt", "a") as file:
-    for error in errors2:
-        file.write("%s\n" % error)
-
+        if errors2:
+            with open(f"{error_folder}/errors_id={unique_id}.txt", "a") as file:
+                for error in errors2:
+                    file.write("%s\n" % error)
+                    
 with ThreadPoolExecutor(max_workers=100_000) as executor:
     executor.map(scrape_url, modified_urls[start_idx:end_idx])
