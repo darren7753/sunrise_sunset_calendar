@@ -35,6 +35,8 @@ errors2 = []
 start_idx = int(os.getenv("START_IDX", 0))
 end_idx = int(os.getenv("END_IDX", 10))
 
+end_idx = min(end_idx, len(modified_urls))
+
 for url in modified_urls[start_idx:end_idx]:
     params = parse_qs(urlparse(url).query)
 
