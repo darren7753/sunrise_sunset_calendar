@@ -13,11 +13,11 @@ from concurrent.futures import ThreadPoolExecutor
 with open("modified_urls.txt", "r") as file:
     modified_urls = [line.strip() for line in file]
 
-data_folder = "Data"
+data_folder = "Data_V2"
 if not os.path.exists(data_folder):
     os.makedirs(data_folder)
 
-error_folder = "Error"
+error_folder = "Error_V2"
 if not os.path.exists(error_folder):
     os.makedirs(error_folder)
 
@@ -153,7 +153,7 @@ def scrape_url(url):
             print(f"Error with URL {url}: {e}")
 
         if errors2:
-            with open(f"{error_folder}/errors_id={unique_id}.txt", "a") as file:
+            with open(f"{error_folder}/errors_V2_id={unique_id}.txt", "a") as file:
                 for error in errors2:
                     file.write("%s\n" % error)
                     
