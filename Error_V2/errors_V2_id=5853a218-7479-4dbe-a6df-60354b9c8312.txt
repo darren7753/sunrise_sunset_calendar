@@ -1,0 +1,2 @@
+http://sunrisesunset.com/calendar.asp?back=USA&comb_city_info=Eagle+River%2C+Wisconsin%2C+USA%3B89.2579%3B45.9246%3B-6%3B1&month=2&year=2023&want_twi_civ=1&want_twi_naut=1&want_twi_astro=1&want_info=1&want_mphase=1&want_mrms=1&want_solar_noon=1&want_eqx_sol=1&time_type=1&wsom=0
+http://sunrisesunset.com/calendar.asp?back=USA&comb_city_info=Eagle+River%2C+Wisconsin%2C+USA%3B89.2579%3B45.9246%3B-6%3B1&month=2&year=2023&want_twi_civ=1&want_twi_naut=1&want_twi_astro=1&want_info=1&want_mphase=1&want_mrms=1&want_solar_noon=1&want_eqx_sol=1&time_type=1&wsom=0
