@@ -24,7 +24,7 @@ For the scraping process, I combined popular libraries like BeautifulSoup and Se
   - This script cleans and consolidates the data per state and year (e.g., `New York_2022.xlsx`, `New York_2023.xlsx`, etc.).
  
 
-You can view all the collected data in this [Drive](https://drive.google.com/drive/folders/1Vx_xGYt3jTfDB2vFhAz-KKvUgIZDZVws?usp=sharing) folder. As an example, the datasets for New York (both pre and post scraping) can be seen in the following:
+You can view all the collected data in this [Drive](https://drive.google.com/drive/folders/1Vx_xGYt3jTfDB2vFhAz-KKvUgIZDZVws?usp=sharing) folder. As an example, the datasets for New York (both pre and post-scraping) can be seen in the following:
 <table align="center">
   <tr>
     <td align="center">
