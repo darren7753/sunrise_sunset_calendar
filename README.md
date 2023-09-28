@@ -1,6 +1,6 @@
 # Scraping U.S. Sunrise and Sunset Calendars
 
-This project was commissioned by a client. If you're interested in similar work, check out my freelance data analyst profile on [Fastwork](https://fastwork.id/user/darren7753).
+This project was commissioned by a client on 2023-09-04. If you're interested in similar work, check out my freelance data analyst profile on [Fastwork](https://fastwork.id/user/darren7753).
 
 ## Objective
 The aim of this project was to scrape sunrise and sunset data for 27 states (from Nebraska to Wyoming) in the U.S. from http://sunrisesunset.com/USA/. Here's a breakdown:
